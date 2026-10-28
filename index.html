@@ -376,6 +376,21 @@
       }, 3000);
 
     }
+const parametrosURL = new URLSearchParams(window.location.search);
+  const pantallaQR = parametrosURL.get('p');
+
+  const pantallasValidas = [
+    'inicio',
+    'fantasma',
+    'arana',
+    'bruja',
+    'calabaza',
+    'tesoro'
+  ];
+
+  if (pantallasValidas.includes(pantallaQR)) {
+    mostrar(pantallaQR);
+  }
 
   </script>
 
