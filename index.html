@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>La misión de Halloween 🎃</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #14091f;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .pantalla {
+      min-height: 100vh;
+      padding: 35px 20px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pantalla.activa {
+      display: flex;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      max-width: 500px;
+    }
+
+    .personaje {
+      font-size: 7rem;
+      margin: 15px;
+      animation: flotar 2s ease-in-out infinite;
+    }
+
+    .boton {
+      border: none;
+      border-radius: 20px;
+      padding: 18px 30px;
+      margin: 12px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      cursor: pointer;
+      background: #ff8c00;
+      color: white;
+      box-shadow: 0 6px 0 #a34f00;
+      transition: transform 0.15s;
+    }
+
+    .boton:active {
+      transform: translateY(5px);
+      box-shadow: 0 1px 0 #a34f00;
+    }
+
+    .opciones {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .opcion {
+      background: #32134d;
+      box-shadow: 0 5px 0 #1d092e;
+    }
+
+    .mensaje {
+      min-height: 60px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 15px;
+    }
+
+    .fantasma {
+      background: linear-gradient(#25113a, #0e0615);
+    }
+
+    .arana {
+      background: linear-gradient(#10231c, #06100b);
+    }
+
+    .bruja {
+      background: linear-gradient(#24113a, #10051b);
+    }
+
+    .calabaza {
+      background: linear-gradient(#321506, #120700);
+    }
+
+    .tesoro {
+      background: linear-gradient(#3a1700, #120600);
+    }
+
+    .confeti {
+      font-size: 3rem;
+      animation: aparecer 1s ease-in-out;
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PANTALLA 1 -->
+  <section id="inicio" class="pantalla activa">
+    <div class="personaje">🎃</div>
+
+    <h1>🎃 La misión de Halloween 🎃</h1>
+
+    <p>
+      ¡Hola, pequeños monstruos!
+    </p>
+
+    <p>
+      Esta noche alguien ha escondido un tesoro
+      por la rampa...
+    </p>
+
+    <p>
+      ¿Seréis capaces de encontrarlo?
+    </p>
+
+    <button class="boton" onclick="mostrar('fantasma')">
+      👻 ¡EMPEZAR!
+    </button>
+  </section>
+
+
+  <!-- PANTALLA 2 -->
+  <section id="fantasma" class="pantalla fantasma">
+
+    <div class="personaje">👻</div>
+
+    <h2>¡BUUUUU!</h2>
+
+    <p>
+      Soy Fantasmín y necesito vuestra ayuda.
+    </p>
+
+    <p>
+      Mi tesoro ha desaparecido y mis amigos
+      me ayudarán a encontrarlo.
+    </p>
+
+    <p>
+      🕷️ Buscad por la rampa a alguien que tenga
+      <strong>8 patas</strong>.
+    </p>
+
+    <p>
+      Cuando lo encontréis, ¡escanead su código!
+    </p>
+
+  </section>
+
+
+  <!-- PANTALLA 3 -->
+  <section id="arana" class="pantalla arana">
+
+    <div class="personaje">🕷️</div>
+
+    <h2>¡Habéis encontrado a la araña!</h2>
+
+    <p>
+      Tengo una pregunta muy importante...
+    </p>
+
+    <p>
+      ¿Cuántas patas tengo?
+    </p>
+
+    <div class="opciones">
+
+      <button class="boton opcion" onclick="respuestaAraña(false)">
+        🕷️ 4
+      </button>
+
+      <button class="boton opcion" onclick="respuestaAraña(false)">
+        🕷️ 6
+      </button>
+
+      <button class="boton opcion" onclick="respuestaAraña(true)">
+        🕷️ 8
+      </button>
+
+    </div>
+
+    <div id="mensajeAraña" class="mensaje"></div>
+
+  </section>
+
+
+  <!-- PANTALLA 4 -->
+  <section id="bruja" class="pantalla bruja">
+
+    <div class="personaje">🧙‍♀️</div>
+
+    <h2>¡La bruja os estaba esperando!</h2>
+
+    <p>
+      Para encontrar el tesoro tendréis que
+      demostrar que sois verdaderos magos.
+    </p>
+
+    <p>
+      🪄 Decid conmigo:
+    </p>
+
+    <p>
+      <strong>
+        "Abracadabra, pata de cabra,<br>
+        que aparezca la calabaza..."
+      </strong>
+    </p>
+
+    <button class="boton" onclick="hechizo()">
+      🪄 ¡HACER HECHIZO!
+    </button>
+
+    <div id="mensajeHechizo" class="mensaje"></div>
+
+  </section>
+
+
+  <!-- PANTALLA 5 -->
+  <section id="calabaza" class="pantalla calabaza">
+
+    <div class="personaje">🎃</div>
+
+    <h2>¡Habéis encontrado la calabaza!</h2>
+
+    <p>
+      Solo queda una última cosa...
+    </p>
+
+    <p>
+      Buscad muy cerca de esta calabaza.
+    </p>
+
+    <p>
+      Allí está vuestro...
+    </p>
+
+    <button class="boton" onclick="mostrar('tesoro')">
+      🎁 ¡TESORO!
+    </button>
+
+  </section>
+
+
+  <!-- PANTALLA 6 -->
+  <section id="tesoro" class="pantalla tesoro">
+
+    <div class="confeti">
+      🎃 👻 🕷️ 🧙‍♀️ 🎃
+    </div>
+
+    <h1>🎉 ¡LO HABÉIS CONSEGUIDO! 🎉</h1>
+
+    <p>
+      ¡Sois unos auténticos cazamonstruos!
+    </p>
+
+    <p>
+      Habéis encontrado todas las pistas
+      y habéis superado el hechizo.
+    </p>
+
+    <p>
+      🏆 <strong>MISIÓN DE HALLOWEEN COMPLETADA</strong> 🏆
+    </p>
+
+    <p>
+      Ahora sí...
+    </p>
+
+    <h2>🎁 ¡A DISFRUTAR DEL TESORO! 🎁</h2>
+
+    <p>
+      👻 ¡Feliz Halloween! 🎃
+    </p>
+
+  </section>
+
+
+  <script>
+
+    function mostrar(pantalla) {
+
+      document.querySelectorAll('.pantalla').forEach(function(elemento) {
+        elemento.classList.remove('activa');
+      });
+
+      document.getElementById(pantalla).classList.add('activa');
+
+      window.scrollTo(0, 0);
+    }
+
+
+    function respuestaAraña(correcta) {
+
+      const mensaje = document.getElementById('mensajeAraña');
+
+      if (correcta) {
+
+        mensaje.innerHTML =
+          '🎉 ¡CORRECTO! ¡Tenéis unos ojos de monstruo increíbles!<br><br>' +
+          '🧙‍♀️ Ahora buscad a alguien que lleve un sombrero puntiagudo...';
+
+        setTimeout(function() {
+          mostrar('bruja');
+        }, 3000);
+
+      } else {
+
+        mensaje.innerHTML =
+          '🕷️ ¡Uy! Casi... ¡Mira bien mis patas! 👀';
+
+      }
+    }
+
+
+    function hechizo() {
+
+      const mensaje = document.getElementById('mensajeHechizo');
+
+      mensaje.innerHTML =
+        '✨✨✨ ¡HECHIZO ACTIVADO! ✨✨✨<br><br>' +
+        '🎃 ¡La última pista ha aparecido!';
+
+      setTimeout(function() {
+        mostrar('calabaza');
+      }, 3000);
+
+    }
+
+  </script>
+
+</body>
+</html>
