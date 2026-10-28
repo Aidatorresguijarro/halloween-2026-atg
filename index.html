@@ -301,7 +301,7 @@
 
   <div class="personaje">🧙‍♀️</div>
 
-  <h2>¡La bruja os pregunta!</h2>
+  <h2>¡La bruja!</h2>
 
   <p>
     ¡Habéis reconstruido mi puzle mágico!
@@ -331,7 +331,7 @@
     class="boton"
     style="display:none;"
     onclick="mostrar('calabaza')">
-    🎃 ¡SIGUIENTE PISTA!
+    🎃 ¡SIGUIENTE!
   </button>
 
 </section>
@@ -343,14 +343,14 @@
 
     <div class="personaje">🎃</div>
 
-    <h2>¡Habéis encontrado la calabaza!</h2>
+    <h2>¿Buscamos el tesoro?</h2>
 
     <p>
       Solo queda una última cosa...
     </p>
 
     <p>
-      Disfrutar de vuestro merecido...
+      Buscar una caja con un dibujo de calabaza y abrirla
     </p>
 
     <button class="boton" onclick="mostrar('tesoro')">
@@ -541,7 +541,7 @@ function responderBruja(correcta) {
 
   if (correcta) {
     mensaje.innerHTML =
-      '🎉 ¡SÍÍÍ! ¡Es una calabaza! 🎃<br><br>' +
+      '🎉 ¡Sííí! ¡Es una calabaza! 🎃<br><br>' +
       '¡Habéis superado la prueba de la bruja! ' +
       '¡Sois unos auténticos aprendices de magia! 🪄';
 
