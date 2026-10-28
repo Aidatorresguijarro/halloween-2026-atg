@@ -139,6 +139,71 @@
         transform: scale(1);
       }
     }
+     .puzzle-intro {
+      max-width: 420px;
+      margin: 5px auto 15px;
+    }
+
+    .puzzle-board {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: min(84vw, 300px);
+      margin: 10px auto 20px;
+    }
+
+    .puzzle-piece {
+      min-height: 105px;
+      border: 3px solid #ffc46b;
+      border-radius: 18px;
+      background: #43215d;
+      color: white;
+      font-size: 3.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #170923;
+    }
+
+    .puzzle-piece.seleccionada {
+      outline: 5px solid #fff0a8;
+      background: #70428c;
+      transform: scale(1.03);
+    }
+
+    .puzzle-piece.colocada {
+      background: #315b38;
+      border-color: #a6f0a7;
+      box-shadow: none;
+    }
+
+    .puzzle-piezas {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: min(84vw, 300px);
+      margin: 10px auto;
+    }
+
+    .puzzle-piezas button {
+      min-height: 65px;
+      border: 2px solid #cba6ed;
+      border-radius: 14px;
+      background: #32134d;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    .puzzle-piezas button:disabled {
+      opacity: 0.45;
+    }
+
+    #mensajePuzzle {
+      min-height: 55px;
+      font-weight: bold;
+      font-size: 1.15rem;
+    }
+
   </style>
 </head>
 
@@ -234,53 +299,84 @@
   <!-- PANTALLA 4 -->
   <section id="bruja" class="pantalla bruja">
 
-  <h1>🧙‍♀️ ¡La bruja mágica!</h1>
+      <div class="personaje">🧙‍♀️</div>
 
-  <p>
-    ¡Habéis encontrado a la bruja!
-    🪄
-  </p>
+    <h2>¡La bruja os necesita!</h2>
 
-  <p>
-    Para preparar mi poción mágica,
-    tendréis que resolver un acertijo...
-  </p>
+    <p class="puzzle-intro">
+      ¡Oh, no! Mi calabaza mágica se ha roto
+      en cuatro pedacitos. ¿Me ayudáis a reconstruirla?
+    </p>
 
-  <h2>✨ ¡Allá va la pregunta! ✨</h2>
+    <p id="instruccionPuzzle">
+      Tocad una pieza y después el hueco
+      donde creéis que va. ¡A por la magia!
+    </p>
 
-  <p>
-    Tengo una nariz naranja, soy redonda
-    y en Halloween me verás brillar.
-    ¿Qué soy?
-  </p>
+    <div class="puzzle-board">
+      <button class="puzzle-piece" id="hueco0"
+        onclick="colocarPieza(0)">?</button>
+      <button class="puzzle-piece" id="hueco1"
+        onclick="colocarPieza(1)">?</button>
+      <button class="puzzle-piece" id="hueco2"
+        onclick="colocarPieza(2)">?</button>
+      <button class="puzzle-piece" id="hueco3"
+        onclick="colocarPieza(3)">?</button>
+    </div>
 
-  <div class="respuestas-bruja">
-    <button class="boton"
-      onclick="responderBruja('fantasma')">
-      👻 Un fantasma
-    </button>
+    <p>Elegid una pieza:</p>
 
-    <button class="boton"
-      onclick="responderBruja('calabaza')">
-      🎃 Una calabaza
-    </button>
+    <div class="puzzle-piezas">
+      <button id="pieza0" onclick="seleccionarPieza(0)">🍃 Pieza 1</button>
+      <button id="pieza1" onclick="seleccionarPieza(1)">🎃 Pieza 2</button>
+      <button id="pieza2" onclick="seleccionarPieza(2)">👀 Pieza 3</button>
+      <button id="pieza3" onclick="seleccionarPieza(3)">✨ Pieza 4</button>
+    </div>
 
-    <button class="boton"
-      onclick="responderBruja('murcielago')">
-      🦇 Un murciélago
-    </button>
-  </div>
+    <div id="mensajePuzzle" class="mensaje"></div>
 
-  <div id="mensajeBruja" class="mensaje"></div>
+    <div id="acertijoBruja" style="display:none;">
+      <h2>🎉 ¡Calabaza reconstruida!</h2>
 
-  <button
-    id="botonContinuarBruja"
-    class="boton"
-    onclick="continuarBruja()"
-    style="display: none;">
-    🎃 ¡IR A LA SIGUIENTE PISTA!
-  </button>
-</section>
+      <p>
+        ¡Habéis hecho magia de verdad!
+        Ahora responded a mi acertijo:
+      </p>
+
+      <p>
+        Tengo una nariz naranja, soy redonda
+        y en Halloween me verás brillar.
+        ¿Qué soy?
+      </p>
+
+      <div class="opciones">
+        <button class="boton opcion"
+          onclick="responderBruja(false)">
+          👻 Un fantasma
+        </button>
+
+        <button class="boton opcion"
+          onclick="responderBruja(true)">
+          🎃 Una calabaza
+        </button>
+
+        <button class="boton opcion"
+          onclick="responderBruja(false)">
+          🦇 Un murciélago
+        </button>
+      </div>
+
+      <div id="mensajeAcertijoBruja" class="mensaje"></div>
+
+      <button id="continuarBruja" class="boton"
+        style="display:none;"
+        onclick="mostrar('calabaza')">
+        🎃 ¡SIGUIENTE PISTA!
+      </button>
+    </div>
+
+  </section>
+
 
 
 
@@ -380,32 +476,85 @@
 
     function hechizo() {
 
-      const mensaje = document.getElementById('mensajeHechizo');
+       let piezaSeleccionada = null;
+    let piezasColocadas = [];
 
-      function responderBruja(respuesta) {
-  const mensaje = document.getElementById('mensajeBruja');
-  const botonContinuar = document.getElementById('botonContinuarBruja');
+    const ordenCorrecto = [1, 0, 3, 2];
+    const dibujosPiezas = ['🍃', '🎃', '👀', '✨'];
 
-  if (respuesta === 'calabaza') {
-    mensaje.innerHTML =
-      '🎉 ¡SÍÍÍ, HABÉIS ACERTADO! 🎉<br><br>' +
-      '🪄 ¡La poción mágica está lista!<br><br>' +
-      'Habéis superado la prueba de la bruja. ' +
-      '¡Sois unos auténticos aprendices de magia! ✨';
+    function seleccionarPieza(numero) {
+      if (piezasColocadas.includes(numero)) return;
 
-    botonContinuar.style.display = 'inline-block';
-  } else {
-    mensaje.innerHTML =
-      '🪄 ¡Uy, casi!<br><br>' +
-      'Pensad un poquito más... ¡Podéis intentarlo otra vez! 💜';
+      piezaSeleccionada = numero;
 
-    botonContinuar.style.display = 'none';
-  }
-}
+      for (let i = 0; i < 4; i++) {
+        document.getElementById('pieza' + i)
+          .style.outline = i === numero
+          ? '4px solid #fff0a8'
+          : 'none';
+      }
 
-function continuarBruja() {
-  mostrar('calabaza');
-}
+      document.getElementById('mensajePuzzle').textContent =
+        '¡Ahora elegid el hueco donde va esa pieza!';
+    }
+
+    function colocarPieza(hueco) {
+      if (piezaSeleccionada === null) {
+        document.getElementById('mensajePuzzle').textContent =
+          'Primero tocad una pieza de abajo. 🪄';
+        return;
+      }
+
+      if (piezasColocadas.includes(piezaSeleccionada)) return;
+
+      if (piezaSeleccionada !== ordenCorrecto[hueco]) {
+        document.getElementById('mensajePuzzle').textContent =
+          '¡Uy, casi! Probad otro hueco. ✨';
+        return;
+      }
+
+      piezasColocadas.push(piezaSeleccionada);
+
+      const casilla = document.getElementById('hueco' + hueco);
+      casilla.textContent = dibujosPiezas[piezaSeleccionada];
+      casilla.classList.add('colocada');
+
+      document.getElementById('pieza' + piezaSeleccionada).disabled = true;
+      document.getElementById('pieza' + piezaSeleccionada)
+        .style.outline = 'none';
+
+      piezaSeleccionada = null;
+
+      if (piezasColocadas.length === 4) {
+        document.getElementById('instruccionPuzzle').textContent =
+          '¡La calabaza mágica está reconstruida!';
+
+        document.getElementById('mensajePuzzle').textContent =
+          '🎉 ¡BRAVO, APRENDICES DE MAGIA! 🎉';
+
+        document.getElementById('acertijoBruja').style.display = 'block';
+      } else {
+        document.getElementById('mensajePuzzle').textContent =
+          '¡Muy bien! ¡Vamos a por la siguiente pieza!';
+      }
+    }
+
+    function responderBruja(correcta) {
+      const mensaje =
+        document.getElementById('mensajeAcertijoBruja');
+
+      if (correcta) {
+        mensaje.innerHTML =
+          '🎉 ¡CORRECTO! Habéis preparado la poción mágica. 🪄';
+
+        document.getElementById('continuarBruja')
+          .style.display = 'inline-block';
+      } else {
+        mensaje.textContent =
+          '¡Uy, casi! Pensadlo otra vez. ¡Podéis intentarlo!';
+      }
+    }
+
 
       setTimeout(function() {
         mostrar('calabaza');
