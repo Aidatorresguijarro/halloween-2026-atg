@@ -234,33 +234,55 @@
   <!-- PANTALLA 4 -->
   <section id="bruja" class="pantalla bruja">
 
-    <div class="personaje">🧙‍♀️</div>
+   <section id="bruja" class="pantalla bruja">
+  <h1>🧙‍♀️ ¡La bruja mágica!</h1>
 
-    <h2>¡La bruja os estaba esperando!</h2>
+  <p>
+    ¡Habéis encontrado a la bruja!
+    🪄
+  </p>
 
-    <p>
-      Para encontrar el tesoro tendréis que
-      demostrar que sois verdaderos magos.
-    </p>
+  <p>
+    Para preparar mi poción mágica,
+    tendréis que resolver un acertijo...
+  </p>
 
-    <p>
-      🪄 Decid conmigo:
-    </p>
+  <h2>✨ ¡Allá va la pregunta! ✨</h2>
 
-    <p>
-      <strong>
-        "Abracadabra, pata de cabra,<br>
-        que aparezca la calabaza..."
-      </strong>
-    </p>
+  <p>
+    Tengo una nariz naranja, soy redonda
+    y en Halloween me verás brillar.
+    ¿Qué soy?
+  </p>
 
-    <button class="boton" onclick="hechizo()">
-      🪄 ¡HACER HECHIZO!
+  <div class="respuestas-bruja">
+    <button class="boton"
+      onclick="responderBruja('fantasma')">
+      👻 Un fantasma
     </button>
 
-    <div id="mensajeHechizo" class="mensaje"></div>
+    <button class="boton"
+      onclick="responderBruja('calabaza')">
+      🎃 Una calabaza
+    </button>
 
-  </section>
+    <button class="boton"
+      onclick="responderBruja('murcielago')">
+      🦇 Un murciélago
+    </button>
+  </div>
+
+  <div id="mensajeBruja" class="mensaje"></div>
+
+  <button
+    id="botonContinuarBruja"
+    class="boton"
+    onclick="continuarBruja()"
+    style="display: none;">
+    🎃 ¡IR A LA SIGUIENTE PISTA!
+  </button>
+</section>
+
 
 
   <!-- PANTALLA 5 -->
@@ -361,9 +383,30 @@
 
       const mensaje = document.getElementById('mensajeHechizo');
 
-      mensaje.innerHTML =
-        '✨✨✨ ¡HECHIZO ACTIVADO! ✨✨✨<br><br>' +
-        '🎃 ¡La calabaza ha aparecido en una caja marrón!';
+      function responderBruja(respuesta) {
+  const mensaje = document.getElementById('mensajeBruja');
+  const botonContinuar = document.getElementById('botonContinuarBruja');
+
+  if (respuesta === 'calabaza') {
+    mensaje.innerHTML =
+      '🎉 ¡SÍÍÍ, HABÉIS ACERTADO! 🎉<br><br>' +
+      '🪄 ¡La poción mágica está lista!<br><br>' +
+      'Habéis superado la prueba de la bruja. ' +
+      '¡Sois unos auténticos aprendices de magia! ✨';
+
+    botonContinuar.style.display = 'inline-block';
+  } else {
+    mensaje.innerHTML =
+      '🪄 ¡Uy, casi!<br><br>' +
+      'Pensad un poquito más... ¡Podéis intentarlo otra vez! 💜';
+
+    botonContinuar.style.display = 'none';
+  }
+}
+
+function continuarBruja() {
+  mostrar('calabaza');
+}
 
       setTimeout(function() {
         mostrar('calabaza');
