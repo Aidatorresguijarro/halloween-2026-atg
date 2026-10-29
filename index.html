@@ -249,13 +249,38 @@
     </p>
 
     <p>
-      🕷️ Buscad por la rampa a alguien que tenga
-      <strong>unos ojos muy grandes</strong>.
+      🕷️ Buscar a alguien que tenga
+      <strong>unos ojos blancos muy grandes</strong>.
     </p>
 
     <p>
-      Cuando lo encontréis, ¡escanead su código!
+      Cuando lo encontréis, ¿me podéis decir qué animal es mi amiga? 🧐
     </p>
+    
+<div class="opciones">
+
+  <button class="boton opcion" onclick="responderFantasma(false)">
+    🐜 Una hormiga
+  </button>
+
+  <button class="boton opcion" onclick="responderFantasma(true)">
+    🕷️ Una araña
+  </button>
+
+  <button class="boton opcion" onclick="responderFantasma(false)">
+    🦇 Un murciélago
+  </button>
+
+</div>
+
+<div id="mensajeFantasma" class="mensaje"></div>
+
+<button id="continuarFantasma"
+  class="boton"
+  style="display:none;"
+  onclick="mostrar('arana')">
+  🕷️ ¡HE ENCONTRADO A LA ARAÑA!
+</button>
 
   </section>
 
@@ -549,6 +574,23 @@ function responderBruja(correcta) {
   } else {
     mensaje.textContent =
       '🪄 ¡Uy, casi! Mirad bien el puzle que habéis montado. ¡Intentadlo otra vez!';
+
+    continuar.style.display = 'none';
+  }
+}
+function responderFantasma(correcta) {
+  const mensaje = document.getElementById('mensajeFantasma');
+  const continuar = document.getElementById('continuarFantasma');
+
+  if (correcta) {
+    mensaje.innerHTML =
+      '🎉 ¡SÍÍÍ! ¡Es una araña! 🕷️<br><br>' +
+      '¡Habéis encontrado a mi amiga! ¡Sois unos detectives fantásticos! 👻✨';
+
+    continuar.style.display = 'inline-block';
+  } else {
+    mensaje.textContent =
+      '👻 ¡Uy, casi! Mirad bien a mi amiga... ¿Qué animal es?';
 
     continuar.style.display = 'none';
   }
