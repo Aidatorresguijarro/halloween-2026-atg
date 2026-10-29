@@ -343,17 +343,17 @@
   <div class="opciones">
     <button class="boton opcion"
       onclick="responderBruja(false)">
-      👻 Un fantasma
+      👻 De fantasma
     </button>
 
     <button class="boton opcion"
       onclick="responderBruja(true)">
-      🎃 Una calabaza
+      🎃 De calabaza
     </button>
 
     <button class="boton opcion"
       onclick="responderBruja(false)">
-      🦇 Un murciélago
+      🦇 De murciélago
     </button>
   </div>
 
@@ -383,6 +383,9 @@
 
     <p>
       Buscar una caja marrón que tiene dos agujeros.
+    </p>
+    
+    <p>
       ¿Os atreveis a meter la mano y buscar el tesoro?
     </p>
 
@@ -397,7 +400,7 @@
   <section id="tesoro" class="pantalla tesoro">
 
     <div class="confeti">
-      🎃 👻 🕷️ 🧙‍♀️ 🎃
+      🎃 👻 🕷️ 🦉 🎃
     </div>
 
     <h1>🎉 ¡OLIVER Y RAI LO HABÉIS CONSEGUIDO! 🎉</h1>
@@ -581,7 +584,7 @@ function responderBruja(correcta) {
     continuar.style.display = 'inline-block';
   } else {
     mensaje.textContent =
-      '🪄 ¡Uy, casi! Mirad bien el puzle que habéis montado. ¡Intentadlo otra vez!';
+      '¡Uy, casi! Mirad bien el disfraz. ¡Intentadlo otra vez!';
 
     continuar.style.display = 'none';
   }
